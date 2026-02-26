@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1440" />
+  <title>Cabin — Digital Product Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #F5F3F1; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .page { width: 1440px; display: flex; flex-direction: column; font-size: 12px; line-height: 16px; }
+
+    /* NAV */
+    .nav { align-items: center; background-color: #5C0A1E; display: flex; flex-shrink: 0; height: 72px; justify-content: space-between; padding-inline: 80px; width: 1440px; }
+    .nav-logo { color: #F5F3F1; font-size: 22px; letter-spacing: -0.02em; line-height: 28px; white-space: nowrap; font-weight: 600; }
+    .nav-links { display: flex; gap: 48px; }
+    .nav-link { color: rgba(245,243,241,0.5); font-size: 14px; line-height: 18px; }
+    .nav-link.active { color: #F5F3F1; }
+    .nav-cta { background-color: #F5A800; border-radius: 100px; padding: 10px 24px; }
+    .nav-cta span { color: #221C1C; font-size: 13px; line-height: 16px; white-space: nowrap; }
+
+    /* HERO */
+    .hero { background-color: #5C0A1E; flex-shrink: 0; overflow: clip; padding: 110px 80px 90px; position: relative; width: 1440px; }
+    .hero-eyebrow { color: rgba(245,243,241,0.35); font-size: 11px; letter-spacing: 0.2em; line-height: 14px; margin-bottom: 36px; text-transform: uppercase; }
+    .hero-headline { margin-bottom: 44px; }
+    .hero-headline .line1 { color: #F5F3F1; font-size: 92px; letter-spacing: -0.04em; line-height: 0.93; font-weight: 900; }
+    .hero-headline .line2 { color: #F5A800; font-size: 92px; letter-spacing: -0.04em; line-height: 0.93; font-weight: 900; }
+    .hero-bottom { align-items: flex-end; display: flex; justify-content: space-between; }
+    .hero-sub { color: rgba(245,243,241,0.6); font-size: 17px; line-height: 1.65; max-width: 500px; }
+    .hero-actions { display: flex; flex-shrink: 0; gap: 14px; }
+    .btn-primary { background-color: #F5A800; border-radius: 100px; padding: 16px 36px; white-space: nowrap; }
+    .btn-primary span { color: #221C1C; font-size: 15px; line-height: 18px; white-space: nowrap; }
+    .btn-ghost { border: 1.5px solid rgba(245,243,241,0.25); border-radius: 100px; padding: 15px 32px; white-space: nowrap; }
+    .btn-ghost span { color: rgba(245,243,241,0.7); font-size: 15px; line-height: 18px; white-space: nowrap; }
+    .trusted { border-top: 1px solid rgba(245,243,241,0.1); margin-top: 72px; padding-top: 36px; }
+    .trusted-label { color: rgba(245,243,241,0.22); font-size: 10px; letter-spacing: 0.2em; line-height: 12px; margin-bottom: 24px; text-transform: uppercase; }
+    .trusted-logos { align-items: center; display: flex; gap: 60px; }
+    .trusted-logos span { color: rgba(245,243,241,0.18); font-size: 17px; line-height: 22px; }
+    .hero-circle1 { border: 1px solid rgba(245,243,241,0.07); border-radius: 50%; bottom: -140px; height: 640px; position: absolute; right: -140px; width: 640px; }
+    .hero-circle2 { border: 1px solid rgba(245,243,241,0.05); border-radius: 50%; bottom: -70px; height: 420px; position: absolute; right: -70px; width: 420px; }
+
+    /* SERVICES INTRO */
+    .services-intro { background-color: #F5F3F1; flex-shrink: 0; padding: 88px 80px 56px; width: 1440px; }
+    .services-intro-inner { align-items: flex-end; display: flex; justify-content: space-between; }
+    .services-intro-left .eyebrow { color: #A09898; font-size: 11px; letter-spacing: 0.2em; line-height: 14px; margin-bottom: 18px; text-transform: uppercase; }
+    .services-intro-left .h2-dark { color: #221C1C; font-size: 60px; letter-spacing: -0.03em; line-height: 0.95; font-weight: 900; }
+    .services-intro-left .h2-muted { color: #B0AAAA; font-size: 60px; letter-spacing: -0.03em; line-height: 0.95; font-weight: 900; }
+    .services-intro-right { max-width: 380px; padding-bottom: 6px; }
+    .services-intro-right p { color: #7A7070; font-size: 16px; line-height: 1.7; }
+
+    /* SERVICE ROW (light) */
+    .service-row-light { background-color: #F5F3F1; flex-shrink: 0; padding-inline: 80px; width: 1440px; }
+    .service-row-dark { background-color: #221C1C; flex-shrink: 0; padding-inline: 80px; width: 1440px; }
+    .service-row-inner { align-items: flex-start; border-top: 1.5px solid #D8D4D0; display: flex; gap: 72px; padding-block: 60px; }
+    .service-row-dark .service-row-inner { border-top-color: rgba(245,243,241,0.08); border-top-width: 1px; }
+    .service-num-col { flex-shrink: 0; width: 180px; }
+    .service-num { font-size: 64px; letter-spacing: -0.04em; line-height: 1; font-weight: 900; color: #EAE4E6; }
+    .service-row-dark .service-num { color: rgba(245,243,241,0.07); }
+    .service-label { font-size: 10px; letter-spacing: 0.18em; line-height: 1.6; margin-top: 10px; text-transform: uppercase; white-space: pre-wrap; color: #5C0A1E; }
+    .service-row-dark .service-label { color: #F5A800; }
+    .service-content { flex: 1; }
+    .service-headline { font-size: 38px; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; white-space: pre-wrap; font-weight: 900; color: #221C1C; }
+    .service-row-dark .service-headline { color: #F5F3F1; }
+    .service-body { font-size: 15px; line-height: 1.7; margin-bottom: 28px; max-width: 480px; color: #7A7070; }
+    .service-row-dark .service-body { color: rgba(245,243,241,0.48); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip-light { background-color: #E8DDE0; border-radius: 100px; padding: 7px 15px; }
+    .chip-light span { color: #221C1C; font-size: 12px; line-height: 16px; }
+    .chip-dark { border: 1px solid rgba(245,243,241,0.13); border-radius: 100px; padding: 7px 15px; }
+    .chip-dark span { color: rgba(245,243,241,0.65); font-size: 12px; line-height: 16px; }
+    .service-icon { align-items: center; border-radius: 18px; display: flex; flex-shrink: 0; height: 180px; justify-content: center; width: 180px; background-color: #E8DDE0; }
+    .service-row-dark .service-icon { background-color: rgba(245,243,241,0.05); }
+
+    /* CTA FOOTER */
+    .cta-footer { background-color: #5C0A1E; flex-shrink: 0; overflow: clip; padding: 110px 80px 72px; position: relative; width: 1440px; }
+    .cta-circle { border: 1px solid rgba(245,243,241,0.06); border-radius: 50%; height: 480px; left: -100px; position: absolute; top: -100px; width: 480px; }
+    .cta-eyebrow { color: rgba(245,243,241,0.3); font-size: 10px; letter-spacing: 0.22em; line-height: 12px; margin-bottom: 28px; position: relative; text-transform: uppercase; }
+    .cta-main { align-items: flex-end; display: flex; justify-content: space-between; margin-bottom: 72px; position: relative; }
+    .cta-headline .line1 { color: #F5F3F1; font-size: 76px; letter-spacing: -0.04em; line-height: 0.93; font-weight: 900; }
+    .cta-headline .line2 { color: #F5A800; font-size: 76px; letter-spacing: -0.04em; line-height: 0.93; font-weight: 900; }
+    .cta-right { align-items: flex-end; display: flex; flex-direction: column; gap: 14px; padding-bottom: 6px; }
+    .cta-btn { background-color: #F5A800; border-radius: 100px; padding: 18px 40px; white-space: nowrap; }
+    .cta-btn span { color: #221C1C; font-size: 16px; line-height: 20px; white-space: nowrap; }
+    .cta-sub { color: rgba(245,243,241,0.35); font-size: 13px; letter-spacing: 0.01em; line-height: 16px; }
+    .footer-bar { align-items: center; border-top: 1px solid rgba(245,243,241,0.1); display: flex; justify-content: space-between; padding-top: 36px; position: relative; }
+    .footer-logo { color: #F5F3F1; font-size: 20px; letter-spacing: -0.02em; line-height: 24px; font-weight: 600; }
+    .footer-links { display: flex; gap: 40px; }
+    .footer-link { color: rgba(245,243,241,0.3); font-size: 13px; line-height: 16px; }
+    .footer-copy { color: rgba(245,243,241,0.2); font-size: 12px; line-height: 16px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-logo">Cabin</div>
+      <div class="nav-links">
+        <span class="nav-link">About</span>
+        <span class="nav-link active">Services</span>
+        <span class="nav-link">Insights</span>
+        <span class="nav-link">Careers</span>
+      </div>
+      <div class="nav-cta"><span>Contact</span></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">Digital Product Consulting</div>
+      <div class="hero-headline">
+        <div class="line1">Human craftsmanship</div>
+        <div class="line2">+ AI-driven innovation.</div>
+      </div>
+      <div class="hero-bottom">
+        <p class="hero-sub">We build digital experiences for ambitious brands — leveraging AI to craft solutions that move your business forward.</p>
+        <div class="hero-actions">
+          <div class="btn-primary"><span>Let's talk →</span></div>
+          <div class="btn-ghost"><span>See our work</span></div>
+        </div>
+      </div>
+      <div class="trusted">
+        <div class="trusted-label">Trusted by</div>
+        <div class="trusted-logos">
+          <span>FICO</span>
+          <span>Vanguard</span>
+          <span>Mastercard</span>
+          <span>T-Mobile</span>
+          <span>KEGR</span>
+        </div>
+      </div>
+      <div class="hero-circle1"></div>
+      <div class="hero-circle2"></div>
+    </section>
+
+    <!-- SERVICES INTRO -->
+    <section class="services-intro">
+      <div class="services-intro-inner">
+        <div class="services-intro-left">
+          <div class="eyebrow">Expertise &amp; Capabilities</div>
+          <div class="h2-dark">Helping you go</div>
+          <div class="h2-muted">further, faster.</div>
+        </div>
+        <div class="services-intro-right">
+          <p>We're social creatures. Relationship builders. In the era of AI, we help people feel closer — to ideas, to products, and to each other.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 STRATEGY -->
+    <section class="service-row-light">
+      <div class="service-row-inner">
+        <div class="service-num-col">
+          <div class="service-num">01</div>
+          <div class="service-label">Strategy &amp;&#10;Innovation</div>
+        </div>
+        <div class="service-content">
+          <div class="service-headline">Identify the opportunity.&#10;Build the roadmap.</div>
+          <p class="service-body">We combine deep industry insights with a human approach to innovation — helping you identify and capitalize on opportunities that make sense for the people you're building for.</p>
+          <div class="chips">
+            <div class="chip-light"><span>Ideation &amp; Concept Validation</span></div>
+            <div class="chip-light"><span>Strategic Roadmapping</span></div>
+            <div class="chip-light"><span>MVP Definition</span></div>
+            <div class="chip-light"><span>AI Strategy &amp; Governance</span></div>
+            <div class="chip-light"><span>Innovation Workshops</span></div>
+            <div class="chip-light"><span>Feasibility Studies</span></div>
+          </div>
+        </div>
+        <div class="service-icon">
+          <svg width="72" height="72" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 6 C40 6 43 30 56 40 C43 50 40 74 40 74 C40 74 37 50 24 40 C37 30 40 6 40 6Z" fill="#5C0A1E"/>
+            <path d="M6 40 C6 40 30 43 40 56 C50 43 74 40 74 40 C74 40 50 37 40 24 C30 37 6 40 6 40Z" fill="#5C0A1E"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 PRODUCT DESIGN -->
+    <section class="service-row-dark">
+      <div class="service-row-inner">
+        <div class="service-num-col">
+          <div class="service-num">02</div>
+          <div class="service-label">Product&#10;Design</div>
+        </div>
+        <div class="service-content">
+          <div class="service-headline">Art + science.&#10;Humans at the center.</div>
+          <p class="service-body">We design with humans at the center — in lockstep with the engineers who translate our vision into digital experiences. It's the art of design plus the science of technology.</p>
+          <div class="chips">
+            <div class="chip-dark"><span>UX/UI Design</span></div>
+            <div class="chip-dark"><span>Design Systems</span></div>
+            <div class="chip-dark"><span>Prototyping &amp; Testing</span></div>
+            <div class="chip-dark"><span>Mobile Design</span></div>
+            <div class="chip-dark"><span>Brand Identity</span></div>
+            <div class="chip-dark"><span>Accessibility</span></div>
+          </div>
+        </div>
+        <div class="service-icon">
+          <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="26" stroke="#F5A800" stroke-width="2.5"/>
+            <circle cx="36" cy="36" r="13" fill="#F5A800" opacity="0.18"/>
+            <circle cx="36" cy="36" r="5" fill="#F5A800"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 SOFTWARE ENGINEERING -->
+    <section class="service-row-light">
+      <div class="service-row-inner">
+        <div class="service-num-col">
+          <div class="service-num">03</div>
+          <div class="service-label">Software&#10;Engineering</div>
+        </div>
+        <div class="service-content">
+          <div class="service-headline">We build it.&#10;We teach you to own it.</div>
+          <p class="service-body">Grounded in technical excellence, our engineering team crafts scalable software tailored to your unique challenges. We're engineers and teachers who empower your team to manage technology with confidence.</p>
+          <div class="chips">
+            <div class="chip-light"><span>Full-Stack Development</span></div>
+            <div class="chip-light"><span>Agentic AI</span></div>
+            <div class="chip-light"><span>Cloud-Native Solutions</span></div>
+            <div class="chip-light"><span>Platform Modernization</span></div>
+            <div class="chip-light"><span>DevOps</span></div>
+            <div class="chip-light"><span>QA &amp; Testing</span></div>
+          </div>
+        </div>
+        <div class="service-icon">
+          <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="24" height="24" fill="#5C0A1E"/>
+            <rect x="40" y="8" width="24" height="24" fill="#5C0A1E" opacity="0.25"/>
+            <rect x="8" y="40" width="24" height="24" fill="#5C0A1E" opacity="0.25"/>
+            <rect x="40" y="40" width="24" height="24" fill="#5C0A1E"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 SALESFORCE -->
+    <section class="service-row-dark">
+      <div class="service-row-inner">
+        <div class="service-num-col">
+          <div class="service-num">04</div>
+          <div class="service-label">Salesforce &amp;&#10;Business Systems</div>
+        </div>
+        <div class="service-content">
+          <div class="service-headline">Your revenue stack,&#10;finally working as one.</div>
+          <p class="service-body">We empower businesses to drive growth by maximizing their investments in Salesforce Sales Cloud, Service Cloud, Agentforce, and other AI-enabled revenue operations systems.</p>
+          <div class="chips">
+            <div class="chip-dark"><span>Discovery Workshops</span></div>
+            <div class="chip-dark"><span>Systems Audit</span></div>
+            <div class="chip-dark"><span>AI Systems Roadmap</span></div>
+            <div class="chip-dark"><span>Agentforce</span></div>
+            <div class="chip-dark"><span>Implementation</span></div>
+            <div class="chip-dark"><span>Managed Services</span></div>
+          </div>
+        </div>
+        <div class="service-icon">
+          <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="36" y1="8" x2="36" y2="64" stroke="#F5A800" stroke-width="2"/>
+            <line x1="8" y1="36" x2="64" y2="36" stroke="#F5A800" stroke-width="2"/>
+            <line x1="15" y1="15" x2="57" y2="57" stroke="#F5A800" stroke-width="2" opacity="0.35"/>
+            <line x1="57" y1="15" x2="15" y2="57" stroke="#F5A800" stroke-width="2" opacity="0.35"/>
+            <circle cx="36" cy="36" r="4" fill="#F5A800"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FOOTER -->
+    <section class="cta-footer">
+      <div class="cta-circle"></div>
+      <div class="cta-eyebrow">Ready when you are</div>
+      <div class="cta-main">
+        <div class="cta-headline">
+          <div class="line1">Busy team?</div>
+          <div class="line2">Good company.</div>
+        </div>
+        <div class="cta-right">
+          <div class="cta-btn"><span>Say hello → hi@cabinco.com</span></div>
+          <span class="cta-sub">No lumber required.</span>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-logo">Cabin</div>
+        <div class="footer-links">
+          <span class="footer-link">About</span>
+          <span class="footer-link">Services</span>
+          <span class="footer-link">Insights</span>
+          <span class="footer-link">Careers</span>
+        </div>
+        <span class="footer-copy">© 2025 Cabin. All rights reserved.</span>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
