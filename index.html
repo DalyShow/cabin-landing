@@ -308,6 +308,22 @@
     .footer-link { color: rgba(245,243,241,0.3); font-size: 13px; }
     .footer-copy { color: rgba(245,243,241,0.2); font-size: 12px; }
 
+    /* ─── SCROLL REVEAL ─── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--delay, 0ms);
+    }
+    [data-reveal].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ─── TABLET (≤ 900px) ─── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -357,19 +373,19 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-eyebrow">Digital Product Consulting</div>
-      <div class="hero-headline">
+      <div class="hero-eyebrow" data-reveal>Digital Product Consulting</div>
+      <div class="hero-headline" data-reveal style="--delay:80ms">
         <div class="line1">Human craftsmanship</div>
         <div class="line2">+ AI-driven innovation.</div>
       </div>
-      <div class="hero-bottom">
+      <div class="hero-bottom" data-reveal style="--delay:180ms">
         <p class="hero-sub">We build digital experiences for ambitious brands — leveraging AI to craft solutions that move your business forward.</p>
         <div class="hero-actions">
           <div class="btn-primary"><span>Let's talk →</span></div>
           <div class="btn-ghost"><span>See our work</span></div>
         </div>
       </div>
-      <div class="trusted">
+      <div class="trusted" data-reveal style="--delay:280ms">
         <div class="trusted-label">Trusted by</div>
         <div class="trusted-logos">
           <span>FICO</span>
@@ -386,12 +402,12 @@
     <!-- SERVICES INTRO -->
     <section class="services-intro">
       <div class="services-intro-inner">
-        <div class="services-intro-left">
+        <div class="services-intro-left" data-reveal>
           <div class="eyebrow">Expertise &amp; Capabilities</div>
           <div class="h2-dark">Helping you go</div>
           <div class="h2-muted">further, faster.</div>
         </div>
-        <div class="services-intro-right">
+        <div class="services-intro-right" data-reveal style="--delay:140ms">
           <p>We're social creatures. Relationship builders. In the era of AI, we help people feel closer — to ideas, to products, and to each other.</p>
         </div>
       </div>
@@ -400,11 +416,11 @@
     <!-- 01 STRATEGY -->
     <section class="service-row-light">
       <div class="service-row-inner">
-        <div class="service-num-col">
+        <div class="service-num-col" data-reveal>
           <div class="service-num">01</div>
           <div class="service-label">Strategy &amp;&#10;Innovation</div>
         </div>
-        <div class="service-content">
+        <div class="service-content" data-reveal style="--delay:100ms">
           <div class="service-headline">Identify the opportunity.&#10;Build the roadmap.</div>
           <p class="service-body">We combine deep industry insights with a human approach to innovation — helping you identify and capitalize on opportunities that make sense for the people you're building for.</p>
           <div class="chips">
@@ -416,7 +432,7 @@
             <div class="chip-light"><span>Feasibility Studies</span></div>
           </div>
         </div>
-        <div class="service-icon">
+        <div class="service-icon" data-reveal style="--delay:200ms">
           <svg width="72" height="72" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M40 6 C40 6 43 30 56 40 C43 50 40 74 40 74 C40 74 37 50 24 40 C37 30 40 6 40 6Z" fill="#5C0A1E"/>
             <path d="M6 40 C6 40 30 43 40 56 C50 43 74 40 74 40 C74 40 50 37 40 24 C30 37 6 40 6 40Z" fill="#5C0A1E"/>
@@ -428,11 +444,11 @@
     <!-- 02 PRODUCT DESIGN -->
     <section class="service-row-dark">
       <div class="service-row-inner">
-        <div class="service-num-col">
+        <div class="service-num-col" data-reveal>
           <div class="service-num">02</div>
           <div class="service-label">Product&#10;Design</div>
         </div>
-        <div class="service-content">
+        <div class="service-content" data-reveal style="--delay:100ms">
           <div class="service-headline">Art + science.&#10;Humans at the center.</div>
           <p class="service-body">We design with humans at the center — in lockstep with the engineers who translate our vision into digital experiences. It's the art of design plus the science of technology.</p>
           <div class="chips">
@@ -444,7 +460,7 @@
             <div class="chip-dark"><span>Accessibility</span></div>
           </div>
         </div>
-        <div class="service-icon">
+        <div class="service-icon" data-reveal style="--delay:200ms">
           <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="36" cy="36" r="26" stroke="#F5A800" stroke-width="2.5"/>
             <circle cx="36" cy="36" r="13" fill="#F5A800" opacity="0.18"/>
@@ -457,11 +473,11 @@
     <!-- 03 SOFTWARE ENGINEERING -->
     <section class="service-row-light">
       <div class="service-row-inner">
-        <div class="service-num-col">
+        <div class="service-num-col" data-reveal>
           <div class="service-num">03</div>
           <div class="service-label">Software&#10;Engineering</div>
         </div>
-        <div class="service-content">
+        <div class="service-content" data-reveal style="--delay:100ms">
           <div class="service-headline">We build it.&#10;We teach you to own it.</div>
           <p class="service-body">Grounded in technical excellence, our engineering team crafts scalable software tailored to your unique challenges. We're engineers and teachers who empower your team to manage technology with confidence.</p>
           <div class="chips">
@@ -473,7 +489,7 @@
             <div class="chip-light"><span>QA &amp; Testing</span></div>
           </div>
         </div>
-        <div class="service-icon">
+        <div class="service-icon" data-reveal style="--delay:200ms">
           <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="8" y="8" width="24" height="24" fill="#5C0A1E"/>
             <rect x="40" y="8" width="24" height="24" fill="#5C0A1E" opacity="0.25"/>
@@ -487,11 +503,11 @@
     <!-- 04 SALESFORCE -->
     <section class="service-row-dark">
       <div class="service-row-inner">
-        <div class="service-num-col">
+        <div class="service-num-col" data-reveal>
           <div class="service-num">04</div>
           <div class="service-label">Salesforce &amp;&#10;Business Systems</div>
         </div>
-        <div class="service-content">
+        <div class="service-content" data-reveal style="--delay:100ms">
           <div class="service-headline">Your revenue stack,&#10;finally working as one.</div>
           <p class="service-body">We empower businesses to drive growth by maximizing their investments in Salesforce Sales Cloud, Service Cloud, Agentforce, and other AI-enabled revenue operations systems.</p>
           <div class="chips">
@@ -503,7 +519,7 @@
             <div class="chip-dark"><span>Managed Services</span></div>
           </div>
         </div>
-        <div class="service-icon">
+        <div class="service-icon" data-reveal style="--delay:200ms">
           <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <line x1="36" y1="8" x2="36" y2="64" stroke="#F5A800" stroke-width="2"/>
             <line x1="8" y1="36" x2="64" y2="36" stroke="#F5A800" stroke-width="2"/>
@@ -518,8 +534,8 @@
     <!-- CTA FOOTER -->
     <section class="cta-footer">
       <div class="cta-circle"></div>
-      <div class="cta-eyebrow">Ready when you are</div>
-      <div class="cta-main">
+      <div class="cta-eyebrow" data-reveal>Ready when you are</div>
+      <div class="cta-main" data-reveal style="--delay:100ms">
         <div class="cta-headline">
           <div class="line1">Busy team?</div>
           <div class="line2">Good company.</div>
@@ -529,7 +545,7 @@
           <span class="cta-sub">No lumber required.</span>
         </div>
       </div>
-      <div class="footer-bar">
+      <div class="footer-bar" data-reveal style="--delay:200ms">
         <div class="footer-logo">Cabin</div>
         <div class="footer-links">
           <span class="footer-link">About</span>
@@ -542,5 +558,18 @@
     </section>
 
   </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
