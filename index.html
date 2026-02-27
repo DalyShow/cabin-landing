@@ -324,9 +324,86 @@
       [data-reveal] { opacity: 1; transform: none; transition: none; }
     }
 
+    /* ─── HAMBURGER & MOBILE MENU ─── */
+    .nav-hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      height: 36px;
+      justify-content: center;
+      padding: 4px;
+      width: 36px;
+    }
+    .nav-hamburger span {
+      background-color: #F5F3F1;
+      border-radius: 2px;
+      display: block;
+      height: 2px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.2s ease;
+      width: 22px;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      background-color: #5C0A1E;
+      border-top: 1px solid rgba(245,243,241,0.1);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.3s ease;
+      width: 100%;
+    }
+    .mobile-menu.open {
+      max-height: 480px;
+      opacity: 1;
+    }
+    .mobile-menu-inner {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0 32px;
+    }
+    .mobile-menu-link {
+      border-bottom: 1px solid rgba(245,243,241,0.06);
+      color: rgba(245,243,241,0.6);
+      cursor: pointer;
+      display: block;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      padding: 18px clamp(24px, 5.6vw, 80px);
+      transition: color 0.15s ease;
+    }
+    .mobile-menu-link:last-of-type { border-bottom: none; }
+    .mobile-menu-link.active { color: #F5F3F1; }
+    .mobile-menu-cta {
+      margin-top: 20px;
+      padding-inline: clamp(24px, 5.6vw, 80px);
+    }
+    .mobile-menu-cta-btn {
+      background-color: #F5A800;
+      border-radius: 100px;
+      cursor: pointer;
+      display: inline-block;
+      padding: 14px 32px;
+    }
+    .mobile-menu-cta-btn span {
+      color: #221C1C;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
     /* ─── TABLET (≤ 900px) ─── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
       .services-intro-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
       .services-intro-right { max-width: 100%; }
       .service-icon { display: none; }
@@ -371,7 +448,25 @@
         <span class="nav-link">Careers</span>
       </div>
       <div class="nav-cta"><span>Contact</span></div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <span class="mobile-menu-link">About</span>
+        <span class="mobile-menu-link active">Services</span>
+        <span class="mobile-menu-link">Insights</span>
+        <span class="mobile-menu-link">Careers</span>
+        <div class="mobile-menu-cta">
+          <div class="mobile-menu-cta-btn"><span>Contact →</span></div>
+        </div>
+      </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -564,6 +659,29 @@
   </div>
 
   <script>
+    /* ── Hamburger menu ── */
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu(force) {
+      const isOpen = typeof force === 'boolean' ? force : !mobileMenu.classList.contains('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+    }
+
+    hamburger.addEventListener('click', () => toggleMenu());
+
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') toggleMenu(false);
+    });
+
+    /* ── Scroll reveal ── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
